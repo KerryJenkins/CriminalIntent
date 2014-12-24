@@ -9,21 +9,25 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using Java.Util;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
     public class Crime
     {
-        public UUID Id { get; private set; }
+        public Guid Id { get; private set; }
         public string Title { get; set; }
         public DateTime Date { get; set; }
         public bool Solved { get; set; }
 
         public Crime()
         {
-            Id = UUID.RandomUUID();
+            Id = Guid.NewGuid();
             Date = DateTime.Now;
+        }
+
+        public override string ToString()
+        {
+            return Title;
         }
     }
 }
