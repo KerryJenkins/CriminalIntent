@@ -16,12 +16,13 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 {
     public class CrimeFragment : Android.Support.V4.App.Fragment
     {
-        private Crime crime;
-        private EditText titleField;
-        private Button dateButton;
-        private CheckBox solvedCheckBox;
+        private Crime _crime;
+        private EditText _titleField;
+        private Button _dateButton;
+        private CheckBox _solvedCheckBox;
 
         public const string EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crime_id";
+        public const string DIALOG_DATE = "date";
 
         public static CrimeFragment NewInstance(Guid crimeId)
         {
@@ -41,7 +42,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             var crimeId = new Guid(Arguments.GetString(EXTRA_CRIME_ID));
 
             var crimeLab = CrimeLab.Create(Activity);
-            crime = crimeLab.GetCrime(crimeId);
+            _crime = crimeLab.GetCrime(crimeId);
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -49,29 +50,36 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             var v = inflater.Inflate(Resource.Layout.fragment_crime, container, false);
 
 
-            titleField = v.FindViewById<EditText>(Resource.Id.crime_title);
-            titleField.Text = crime.Title;
-            titleField.TextChanged += TitleFieldTextChanged;
+            _titleField = v.FindViewById<EditText>(Resource.Id.crime_title);
+            _titleField.Text = _crime.Title;
+            _titleField.TextChanged += TitleFieldTextChanged;
 
-            dateButton = v.FindViewById<Button>(Resource.Id.crime_date);
-            dateButton.Text = crime.Date.ToString(CultureInfo.InvariantCulture);
-            dateButton.Enabled = false;
+            _dateButton = v.FindViewById<Button>(Resource.Id.crime_date);
+            _dateButton.Text = _crime.Date.ToString(CultureInfo.InvariantCulture);
+            _dateButton.Click += dateButton_Click;
 
-            solvedCheckBox = v.FindViewById<CheckBox>(Resource.Id.crime_solved);
-            solvedCheckBox.Checked = crime.Solved;
-            solvedCheckBox.CheckedChange += SolvedCheckBoxCheckedChange;
+            _solvedCheckBox = v.FindViewById<CheckBox>(Resource.Id.crime_solved);
+            _solvedCheckBox.Checked = _crime.Solved;
+            _solvedCheckBox.CheckedChange += SolvedCheckBoxCheckedChange;
 
             return v;        
         }
 
+        void dateButton_Click(object sender, EventArgs e)
+        {
+            var fm = Activity.FragmentManager;
+            var dialog = DatePickerFragment.NewInstance(_crime.Date);
+            dialog.Show(fm, DIALOG_DATE);
+        }
+
         void SolvedCheckBoxCheckedChange(object sender, CompoundButton.CheckedChangeEventArgs e)
         {
-            crime.Solved = e.IsChecked;
+            _crime.Solved = e.IsChecked;
         }
 
         void TitleFieldTextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
-            crime.Title = e.Text.ToString();
+            _crime.Title = e.Text.ToString();
         }
     }
 }

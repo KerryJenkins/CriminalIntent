@@ -72,6 +72,7 @@
     <Compile Include="CrimeListAdapter.cs" />
     <Compile Include="CrimeListFragment.cs" />
     <Compile Include="CrimePagerActivity.cs" />
+    <Compile Include="DatePickerFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleFragmentActivity.cs" />
@@ -87,6 +88,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\list_item_crime.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_date.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

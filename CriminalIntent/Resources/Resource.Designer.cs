@@ -60,29 +60,32 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f040003
-			public const int crime_date = 2130968579;
+			// aapt resource value: 0x7f040004
+			public const int crime_date = 2130968580;
 			
-			// aapt resource value: 0x7f040008
-			public const int crime_list_item_dateTextView = 2130968584;
-			
-			// aapt resource value: 0x7f040006
-			public const int crime_list_item_solvedCheckBox = 2130968582;
+			// aapt resource value: 0x7f040009
+			public const int crime_list_item_dateTextView = 2130968585;
 			
 			// aapt resource value: 0x7f040007
-			public const int crime_list_item_titleTextView = 2130968583;
+			public const int crime_list_item_solvedCheckBox = 2130968583;
 			
-			// aapt resource value: 0x7f040004
-			public const int crime_solved = 2130968580;
+			// aapt resource value: 0x7f040008
+			public const int crime_list_item_titleTextView = 2130968584;
+			
+			// aapt resource value: 0x7f040005
+			public const int crime_solved = 2130968581;
+			
+			// aapt resource value: 0x7f040003
+			public const int crime_title = 2130968579;
 			
 			// aapt resource value: 0x7f040002
-			public const int crime_title = 2130968578;
+			public const int dialog_date_datePicker = 2130968578;
 			
 			// aapt resource value: 0x7f040001
 			public const int fragmentContainer = 2130968577;
 			
-			// aapt resource value: 0x7f040005
-			public const int linearLayout1 = 2130968581;
+			// aapt resource value: 0x7f040006
+			public const int linearLayout1 = 2130968582;
 			
 			// aapt resource value: 0x7f040000
 			public const int viewPager = 2130968576;
@@ -104,10 +107,13 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			public const int activity_fragment = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int fragment_crime = 2130903041;
+			public const int dialog_date = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int list_item_crime = 2130903042;
+			public const int fragment_crime = 2130903042;
+			
+			// aapt resource value: 0x7f030003
+			public const int list_item_crime = 2130903043;
 			
 			static Layout()
 			{
@@ -139,6 +145,9 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			
 			// aapt resource value: 0x7f050005
 			public const int crimes_title = 2131034117;
+			
+			// aapt resource value: 0x7f050006
+			public const int date_picker_title = 2131034118;
 			
 			static String()
 			{
