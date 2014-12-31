@@ -60,29 +60,32 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050002
-			public const int crime_date = 2131034114;
+			// aapt resource value: 0x7f040003
+			public const int crime_date = 2130968579;
 			
-			// aapt resource value: 0x7f050007
-			public const int crime_list_item_dateTextView = 2131034119;
+			// aapt resource value: 0x7f040008
+			public const int crime_list_item_dateTextView = 2130968584;
 			
-			// aapt resource value: 0x7f050005
-			public const int crime_list_item_solvedCheckBox = 2131034117;
+			// aapt resource value: 0x7f040006
+			public const int crime_list_item_solvedCheckBox = 2130968582;
 			
-			// aapt resource value: 0x7f050006
-			public const int crime_list_item_titleTextView = 2131034118;
+			// aapt resource value: 0x7f040007
+			public const int crime_list_item_titleTextView = 2130968583;
 			
-			// aapt resource value: 0x7f050003
-			public const int crime_solved = 2131034115;
+			// aapt resource value: 0x7f040004
+			public const int crime_solved = 2130968580;
 			
-			// aapt resource value: 0x7f050001
-			public const int crime_title = 2131034113;
+			// aapt resource value: 0x7f040002
+			public const int crime_title = 2130968578;
 			
-			// aapt resource value: 0x7f050000
-			public const int fragmentContainer = 2131034112;
+			// aapt resource value: 0x7f040001
+			public const int fragmentContainer = 2130968577;
 			
-			// aapt resource value: 0x7f050004
-			public const int linearLayout1 = 2131034116;
+			// aapt resource value: 0x7f040005
+			public const int linearLayout1 = 2130968581;
+			
+			// aapt resource value: 0x7f040000
+			public const int viewPager = 2130968576;
 			
 			static Id()
 			{
@@ -119,23 +122,23 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int ApplicationName = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int ApplicationName = 2131034112;
 			
-			// aapt resource value: 0x7f040003
-			public const int crime_details_label = 2130968579;
+			// aapt resource value: 0x7f050003
+			public const int crime_details_label = 2131034115;
 			
-			// aapt resource value: 0x7f040004
-			public const int crime_solved_label = 2130968580;
+			// aapt resource value: 0x7f050004
+			public const int crime_solved_label = 2131034116;
 			
-			// aapt resource value: 0x7f040001
-			public const int crime_title_hint = 2130968577;
+			// aapt resource value: 0x7f050001
+			public const int crime_title_hint = 2131034113;
 			
-			// aapt resource value: 0x7f040002
-			public const int crime_title_label = 2130968578;
+			// aapt resource value: 0x7f050002
+			public const int crime_title_label = 2131034114;
 			
-			// aapt resource value: 0x7f040005
-			public const int crimes_title = 2130968581;
+			// aapt resource value: 0x7f050005
+			public const int crimes_title = 2131034117;
 			
 			static String()
 			{

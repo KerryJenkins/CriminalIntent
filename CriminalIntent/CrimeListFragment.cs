@@ -32,10 +32,22 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             ListAdapter = adapter;
         }
 
+        public override void OnResume()
+        {
+            base.OnResume();
+
+            var adapter = ListAdapter as CrimeListAdapter;
+            adapter.NotifyDataSetChanged();
+
+        }
         public override void OnListItemClick(ListView l, View v, int position, long id)
         {
             Crime crime = _crimes[position];
-            Log.Debug(TAG, crime.Title + " was clicked");
+            //Log.Debug(TAG, crime.Title + " was clicked");
+
+            var i = new Intent(this.Activity, typeof(CrimePagerActivity));
+            i.PutExtra(CrimeFragment.EXTRA_CRIME_ID, crime.Id.ToString());
+            StartActivity(i);
         }
     }
 }
