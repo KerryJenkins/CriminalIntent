@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    public class DatePickerFragment : DialogFragment, DatePicker.IOnDateChangedListener
+    public class DatePickerFragment : Android.Support.V4.App.DialogFragment, DatePicker.IOnDateChangedListener
     {
 
         public const string EXTRA_DATE = "com.bignerdranch.android.criminalintent.date";

@@ -23,6 +23,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         public const string EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crime_id";
         public const string DIALOG_DATE = "date";
+        public const int REQUEST_DATE = 0;
 
         public static CrimeFragment NewInstance(Guid crimeId)
         {
@@ -67,8 +68,9 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         void dateButton_Click(object sender, EventArgs e)
         {
-            var fm = Activity.FragmentManager;
+            var fm = Activity.SupportFragmentManager;
             var dialog = DatePickerFragment.NewInstance(_crime.Date);
+            dialog.SetTargetFragment(this, REQUEST_DATE);
             dialog.Show(fm, DIALOG_DATE);
         }
 

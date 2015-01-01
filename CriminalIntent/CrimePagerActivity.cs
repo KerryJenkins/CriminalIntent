@@ -9,7 +9,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-//using Android.Support.V13.App;
 using Android.Support.V4.View;
 using Android.Support.V4.App;
 
@@ -92,7 +91,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         }
     }
 
-    internal class MyFragmentStatePagerAdapter : Android.Support.V4.App.FragmentStatePagerAdapter
+    internal class MyFragmentStatePagerAdapter : FragmentStatePagerAdapter 
     {
         public List<Crime> Crimes {get; set;}
 
