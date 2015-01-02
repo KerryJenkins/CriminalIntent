@@ -56,7 +56,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             _titleField.TextChanged += TitleFieldTextChanged;
 
             _dateButton = v.FindViewById<Button>(Resource.Id.crime_date);
-            _dateButton.Text = _crime.Date.ToString(CultureInfo.InvariantCulture);
+            UpdateDate();
             _dateButton.Click += dateButton_Click;
 
             _solvedCheckBox = v.FindViewById<CheckBox>(Resource.Id.crime_solved);
@@ -83,5 +83,25 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         {
             _crime.Title = e.Text.ToString();
         }
+
+        public override void OnActivityResult(int requestCode, int resultCode, Intent data)
+        {
+            //base.OnActivityResult(requestCode, resultCode, data);
+            if (resultCode != (int)Result.Ok) return;
+
+            if (requestCode == REQUEST_DATE)
+            {
+                var date = DateTime.Parse(data.GetStringExtra(DatePickerFragment.EXTRA_DATE));
+                _crime.Date = date;
+                UpdateDate();
+            }
+        }
+
+        private void UpdateDate()
+        {
+            _dateButton.Text = _crime.Date.ToString(CultureInfo.InvariantCulture);
+        }
+
+
     }
 }

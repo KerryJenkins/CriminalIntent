@@ -39,7 +39,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             
             View v = Activity.LayoutInflater.Inflate(Resource.Layout.dialog_date, null);
             var datePicker = v.FindViewById<DatePicker>(Resource.Id.dialog_date_datePicker);
-            datePicker.Init(_date.Year, _date.Month, _date.Day, this);
+            datePicker.Init(_date.Year, _date.Month-1, _date.Day, this);
 
             return new AlertDialog.Builder(Activity)
                 .SetView(v)
@@ -50,14 +50,24 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         private void DialogClickHandler(object sender, DialogClickEventArgs e)
         {
-            //throw new NotImplementedException();
+            sendResult(Result.Ok);
         }
 
 
         public void OnDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
         {
-            _date = new DateTime(year, monthOfYear, dayOfMonth);
+            _date = new DateTime(year, monthOfYear + 1, dayOfMonth);
             Arguments.PutString(EXTRA_DATE, _date.ToString());
+        }
+
+        private void sendResult(Result resultCode)
+        {
+            if (TargetFragment == null) return;
+
+            var i = new Intent();
+            i.PutExtra(EXTRA_DATE, _date.ToString());
+
+            TargetFragment.OnActivityResult(TargetRequestCode, (int)resultCode, i);
         }
     }
 }
