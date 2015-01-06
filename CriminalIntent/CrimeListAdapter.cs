@@ -12,15 +12,16 @@ using Android.Widget;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    public class CrimeListAdapter : BaseAdapter<Crime>
+    public class CrimeListAdapter : ArrayAdapter<Crime>
     {
-        private Crime[] _items;
+        private List<Crime> _crimes;
         private Activity _context;
 
-        public CrimeListAdapter(Activity context, Crime[] items) : base()
+        public CrimeListAdapter(Activity context, List<Crime> crimes) : 
+            base(context, Android.Resource.Layout.SimpleListItem1, crimes)
         {
             _context = context;
-            _items = items;
+            _crimes = crimes;
         }
 
         public override long GetItemId(int position)
@@ -28,14 +29,9 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             return position;
         }
 
-         public override Crime this[int position]
-        {
-            get { return _items[position]; }
-        }
-
         public override int Count
         {
-            get { return _items.Length; }
+            get { return _crimes.Count; }
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -45,7 +41,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             {
                 view = _context.LayoutInflater.Inflate(Resource.Layout.list_item_crime, null);
             }
-            var crime = _items[position];
+            var crime = _crimes[position];
             
             var titleTextView = view.FindViewById<TextView>(Resource.Id.crime_list_item_titleTextView);
             titleTextView.Text = crime.Title;

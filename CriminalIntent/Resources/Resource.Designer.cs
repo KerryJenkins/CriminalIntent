@@ -87,6 +87,12 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			// aapt resource value: 0x7f040006
 			public const int linearLayout1 = 2130968582;
 			
+			// aapt resource value: 0x7f04000a
+			public const int menu_item_new_crime = 2130968586;
+			
+			// aapt resource value: 0x7f04000b
+			public const int menu_item_show_subtitle = 2130968587;
+			
 			// aapt resource value: 0x7f040000
 			public const int viewPager = 2130968576;
 			
@@ -125,6 +131,22 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			}
 		}
 		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f060000
+			public const int fragment_crime_list = 2131099648;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
+			{
+			}
+		}
+		
 		public partial class String
 		{
 			
@@ -148,6 +170,21 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			
 			// aapt resource value: 0x7f050006
 			public const int date_picker_title = 2131034118;
+			
+			// aapt resource value: 0x7f05000b
+			public const int delete_crime = 2131034123;
+			
+			// aapt resource value: 0x7f050009
+			public const int hide_subtitle = 2131034121;
+			
+			// aapt resource value: 0x7f050007
+			public const int new_crime = 2131034119;
+			
+			// aapt resource value: 0x7f050008
+			public const int show_subtitle = 2131034120;
+			
+			// aapt resource value: 0x7f05000a
+			public const int subtitle = 2131034122;
 			
 			static String()
 			{

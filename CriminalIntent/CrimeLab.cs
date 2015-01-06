@@ -24,15 +24,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         {
             _appContext = appContext;
             _crimes = new List<Crime>();
-
-            for (int i = 0; i < 100; i++)
-            {
-                var crime = new Crime();
-                crime.Title = "Crime #" + i;
-                crime.Solved = (i % 2 == 0);
-                _crimes.Add(crime);
-            }
-        }
+         }
 
         public Crime GetCrime(Guid id)
         {
@@ -43,6 +35,11 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
                 }
             }
             return null;
+        }
+
+        public void AddCrime(Crime c)
+        {
+            _crimes.Add(c);
         }
 
         public List<Crime> Crimes {

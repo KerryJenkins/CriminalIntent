@@ -54,11 +54,11 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         }
 
 
-        public void OnDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        {
-            _date = new DateTime(year, monthOfYear + 1, dayOfMonth);
-            Arguments.PutString(EXTRA_DATE, _date.ToString());
-        }
+        //public void OnDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        //{
+        //    _date = new DateTime(year, monthOfYear + 1, dayOfMonth);
+        //    Arguments.PutString(EXTRA_DATE, _date.ToString());
+        //}
 
         private void sendResult(Result resultCode)
         {
@@ -68,6 +68,12 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             i.PutExtra(EXTRA_DATE, _date.ToString());
 
             TargetFragment.OnActivityResult(TargetRequestCode, (int)resultCode, i);
+        }
+
+        public void OnDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+        {
+            _date = new DateTime(year, monthOfYear + 1, dayOfMonth);
+            Arguments.PutString(EXTRA_DATE, _date.ToString());
         }
     }
 }

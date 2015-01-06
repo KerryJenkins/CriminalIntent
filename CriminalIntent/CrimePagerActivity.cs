@@ -14,7 +14,9 @@ using Android.Support.V4.App;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    [Activity(Label = "CrimePagerActivity")]
+    [Activity(Label = "CrimePagerActivity"),
+     MetaData("android.support.PARENT_ACTIVITY",
+        Value = "dtc.nin.ukjenks.criminalintent.CrimeListActivity")]
     public class CrimePagerActivity : FragmentActivity
     {
         private ViewPager _viewPager;

@@ -44,12 +44,18 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
             var crimeLab = CrimeLab.Create(Activity);
             _crime = crimeLab.GetCrime(crimeId);
+
+            HasOptionsMenu = true;
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var v = inflater.Inflate(Resource.Layout.fragment_crime, container, false);
 
+            if (Android.Support.V4.App.NavUtils.GetParentActivityName(Activity) != null)
+            {
+                Activity.ActionBar.SetDisplayHomeAsUpEnabled(true);
+            }
 
             _titleField = v.FindViewById<EditText>(Resource.Id.crime_title);
             _titleField.Text = _crime.Title;
@@ -64,6 +70,20 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             _solvedCheckBox.CheckedChange += SolvedCheckBoxCheckedChange;
 
             return v;        
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    if (Android.Support.V4.App.NavUtils.GetParentActivityName(Activity) != null) {
+                        Android.Support.V4.App.NavUtils.NavigateUpFromSameTask(Activity);
+                    }
+                    return true;
+                default:
+                    return base.OnOptionsItemSelected(item);
+            }
         }
 
         void dateButton_Click(object sender, EventArgs e)
