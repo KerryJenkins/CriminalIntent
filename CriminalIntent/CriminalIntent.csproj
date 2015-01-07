@@ -99,6 +99,9 @@
     <AndroidResource Include="Resources\menu-v11\fragment_crime_list.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_empty_list.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_fragment.axml" />

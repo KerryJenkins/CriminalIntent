@@ -18,6 +18,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         private const string TAG = "CrimeListFragment";
         private Boolean _subtitileVisible;
         private List<Crime> _crimes;
+        private Button _addCrimeButton;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -38,7 +39,10 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var v = base.OnCreateView(inflater, container, savedInstanceState);
+            var v = inflater.Inflate(Resource.Layout.fragment_empty_list, container, false);
+
+            _addCrimeButton = v.FindViewById<Button>(Resource.Id.initial_crimeButton);
+            _addCrimeButton.Click += _addCrimeButton_Click;
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb)
             {
@@ -49,6 +53,15 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             }
 
             return v;
+        }
+
+        void _addCrimeButton_Click(object sender, EventArgs e)
+        {
+            var crime = new Crime();
+            CrimeLab.Create(Activity).AddCrime(crime);
+            var i = new Intent(Activity, typeof(CrimePagerActivity));
+            i.PutExtra(CrimeFragment.EXTRA_CRIME_ID, crime.Id.ToString());
+            StartActivityForResult(i, 0);
         }
 
         public override void OnResume()

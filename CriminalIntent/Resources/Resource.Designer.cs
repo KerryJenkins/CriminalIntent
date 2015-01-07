@@ -63,14 +63,14 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			// aapt resource value: 0x7f040004
 			public const int crime_date = 2130968580;
 			
+			// aapt resource value: 0x7f04000b
+			public const int crime_list_item_dateTextView = 2130968587;
+			
 			// aapt resource value: 0x7f040009
-			public const int crime_list_item_dateTextView = 2130968585;
+			public const int crime_list_item_solvedCheckBox = 2130968585;
 			
-			// aapt resource value: 0x7f040007
-			public const int crime_list_item_solvedCheckBox = 2130968583;
-			
-			// aapt resource value: 0x7f040008
-			public const int crime_list_item_titleTextView = 2130968584;
+			// aapt resource value: 0x7f04000a
+			public const int crime_list_item_titleTextView = 2130968586;
 			
 			// aapt resource value: 0x7f040005
 			public const int crime_solved = 2130968581;
@@ -81,17 +81,23 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			// aapt resource value: 0x7f040002
 			public const int dialog_date_datePicker = 2130968578;
 			
+			// aapt resource value: 0x7f040007
+			public const int emptyTextView = 2130968583;
+			
 			// aapt resource value: 0x7f040001
 			public const int fragmentContainer = 2130968577;
+			
+			// aapt resource value: 0x7f040008
+			public const int initial_crimeButton = 2130968584;
 			
 			// aapt resource value: 0x7f040006
 			public const int linearLayout1 = 2130968582;
 			
-			// aapt resource value: 0x7f04000a
-			public const int menu_item_new_crime = 2130968586;
+			// aapt resource value: 0x7f04000c
+			public const int menu_item_new_crime = 2130968588;
 			
-			// aapt resource value: 0x7f04000b
-			public const int menu_item_show_subtitle = 2130968587;
+			// aapt resource value: 0x7f04000d
+			public const int menu_item_show_subtitle = 2130968589;
 			
 			// aapt resource value: 0x7f040000
 			public const int viewPager = 2130968576;
@@ -119,7 +125,10 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			public const int fragment_crime = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int list_item_crime = 2130903043;
+			public const int fragment_empty_list = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int list_item_crime = 2130903044;
 			
 			static Layout()
 			{
@@ -153,6 +162,9 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			// aapt resource value: 0x7f050000
 			public const int ApplicationName = 2131034112;
 			
+			// aapt resource value: 0x7f05000c
+			public const int button_text = 2131034124;
+			
 			// aapt resource value: 0x7f050003
 			public const int crime_details_label = 2131034115;
 			
@@ -185,6 +197,9 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			
 			// aapt resource value: 0x7f05000a
 			public const int subtitle = 2131034122;
+			
+			// aapt resource value: 0x7f05000d
+			public const int text_view = 2131034125;
 			
 			static String()
 			{
