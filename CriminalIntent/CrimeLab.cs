@@ -56,6 +56,11 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             _crimes.Add(c);
         }
 
+        public void DeleteCrime(Crime c)
+        {
+            _crimes.Remove(c);
+        }
+
         public List<Crime> Crimes {
             get
             {

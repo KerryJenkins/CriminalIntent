@@ -29,6 +29,13 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             return position;
         }
 
+        public Crime this[int position]
+        {
+            get {
+                return _crimes[position];
+            }
+        }   
+
         public override int Count
         {
             get { return _crimes.Count; }

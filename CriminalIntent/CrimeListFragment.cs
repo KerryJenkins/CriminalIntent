@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    public class CrimeListFragment : ListFragment
+    public partial class CrimeListFragment : ListFragment
     {
         private const string TAG = "CrimeListFragment";
         private Boolean _subtitileVisible;
@@ -52,6 +52,18 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
                 }
             }
 
+            var listView = v.FindViewById<ListView>(Android.Resource.Id.List);
+
+            if (Build.VERSION.SdkInt < BuildVersionCodes.Honeycomb)
+            {
+                RegisterForContextMenu(listView);
+            }
+            else
+            {
+                listView.ChoiceMode = ChoiceMode.MultipleModal;
+                listView.SetMultiChoiceModeListener(this as AbsListView.IMultiChoiceModeListener); 
+            }
+
             return v;
         }
 
@@ -83,6 +95,28 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
                 showSubtitle.SetTitle(Resource.String.hide_subtitle);
             }
 
+        }
+
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+        {
+            Activity.MenuInflater.Inflate(Resource.Menu.crime_list_item_context, menu);
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            var info = item.MenuInfo as Android.Widget.AdapterView.AdapterContextMenuInfo;
+            var position = info.Position;
+            var adapter = ListAdapter as CrimeListAdapter;
+            var crime = adapter[position];
+
+            switch (item.ItemId)
+            {
+                case Resource.Id.menu_item_delete_crime:
+                    CrimeLab.Create(Activity).DeleteCrime(crime);
+                    adapter.NotifyDataSetChanged();
+                    return true;
+            }
+            return base.OnContextItemSelected(item);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -127,5 +161,54 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             i.PutExtra(CrimeFragment.EXTRA_CRIME_ID, crime.Id.ToString());
             StartActivity(i);
         }
+
+     }
+
+    public partial class CrimeListFragment : AbsListView.IMultiChoiceModeListener
+    {
+
+        public void OnItemCheckedStateChanged(ActionMode mode, int position, long id, bool @checked)
+        {
+            // Required, but not used in this implementation
+        }
+
+        public bool OnActionItemClicked(ActionMode mode, IMenuItem item)
+            {
+                switch (item.ItemId)
+                {
+                    case Resource.Id.menu_item_delete_crime:
+                        var adapter = ListAdapter as CrimeListAdapter;
+                        var crimeLab = CrimeLab.Create(Activity);
+                        for (int i = adapter.Count - 1; i >= 0; i--)
+                        {
+                            if (ListView.IsItemChecked(i)) {
+                                crimeLab.DeleteCrime(adapter[i]);
+                            }
+                        }
+                        mode.Finish();
+                        adapter.NotifyDataSetChanged();
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+
+        public bool OnCreateActionMode(ActionMode mode, IMenu menu)
+        {
+            var inflater = mode.MenuInflater;
+            inflater.Inflate(Resource.Menu.crime_list_item_context, menu);
+            return true;
+        }
+
+        public void OnDestroyActionMode(ActionMode mode)
+        {
+            // Required, but not used in this implementation
+        }
+
+        public bool OnPrepareActionMode(ActionMode mode, IMenu menu)
+        {
+            return false;
+        }
     }
+
 }

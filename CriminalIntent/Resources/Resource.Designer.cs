@@ -45,7 +45,10 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int background_activated = 2130837504;
+			
+			// aapt resource value: 0x7f020001
+			public const int Icon = 2130837505;
 			
 			static Drawable()
 			{
@@ -94,10 +97,13 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			public const int linearLayout1 = 2130968582;
 			
 			// aapt resource value: 0x7f04000c
-			public const int menu_item_new_crime = 2130968588;
+			public const int menu_item_delete_crime = 2130968588;
 			
 			// aapt resource value: 0x7f04000d
-			public const int menu_item_show_subtitle = 2130968589;
+			public const int menu_item_new_crime = 2130968589;
+			
+			// aapt resource value: 0x7f04000e
+			public const int menu_item_show_subtitle = 2130968590;
 			
 			// aapt resource value: 0x7f040000
 			public const int viewPager = 2130968576;
@@ -144,7 +150,10 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 		{
 			
 			// aapt resource value: 0x7f060000
-			public const int fragment_crime_list = 2131099648;
+			public const int crime_list_item_context = 2131099648;
+			
+			// aapt resource value: 0x7f060001
+			public const int fragment_crime_list = 2131099649;
 			
 			static Menu()
 			{
