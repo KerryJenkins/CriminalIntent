@@ -9,21 +9,35 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Android.Util;
 
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
     public class CrimeLab
     {
+        private const string TAG = "CrimeLab";
+        private const string FILENAME = "crimes.json";
+
         private static CrimeLab _crimeLab;
         private Context _appContext;
         private static Object _creationLock = new Object();
         private List<Crime> _crimes;
+        private CriminalIntentJSONSerializer _serializer;
 
         private CrimeLab(Context appContext)
         {
             _appContext = appContext;
-            _crimes = new List<Crime>();
+            _serializer = new CriminalIntentJSONSerializer(FILENAME);
+            try
+            {
+                _crimes = _serializer.LoadCrimes();
+            }
+            catch (Exception ex)
+            {
+                _crimes = new List<Crime>();
+                Log.Error(TAG, "Error loading crimes:", ex.ToString());
+            }
          }
 
         public Crime GetCrime(Guid id)
@@ -59,6 +73,21 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
                 }
             }
             return _crimeLab;
+        }
+
+        public Boolean SaveCrimes()
+        {
+            try
+            {
+                _serializer.SaveCrimes(_crimes);
+                Log.Debug(TAG, "crimes saved to file");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(TAG, "Error saving crimes: ", ex);
+                return false;
+            }
         }
     }
 }

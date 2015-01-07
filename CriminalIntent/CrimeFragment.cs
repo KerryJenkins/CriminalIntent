@@ -117,6 +117,12 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             }
         }
 
+        public override void OnPause()
+        {
+            base.OnPause();
+            CrimeLab.Create(Activity).SaveCrimes();
+        }
+
         private void UpdateDate()
         {
             _dateButton.Text = _crime.Date.ToString(CultureInfo.InvariantCulture);
