@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.App;
+using Android.Support.V4.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -13,9 +13,9 @@ using Android.Widget;
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
     //[Activity(Label = "SingleFragmentActivity")]
-    public abstract class SingleFragmentActivity : Activity
+    public abstract class SingleFragmentActivity : FragmentActivity
     {
-        protected abstract Fragment CreateFragment();
+        protected abstract Android.Support.V4.App.Fragment CreateFragment();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -23,7 +23,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
             SetContentView(Resource.Layout.activity_fragment);
 
-            var fm = FragmentManager;
+            var fm = SupportFragmentManager;
             var fragment = fm.FindFragmentById(Resource.Id.fragmentContainer);
 
             if (fragment == null)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.App;
+using Android.Support.V4.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -13,7 +13,7 @@ using Android.Widget;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    public class DatePickerFragment : Android.Support.V4.App.DialogFragment, DatePicker.IOnDateChangedListener
+    public class DatePickerFragment : DialogFragment, DatePicker.IOnDateChangedListener
     {
 
         public const string EXTRA_DATE = "com.bignerdranch.android.criminalintent.date";
@@ -30,7 +30,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             return fragment;
         }
 
-        public override Dialog OnCreateDialog(Bundle savedInstanceState)
+         public override Android.App.Dialog OnCreateDialog(Bundle savedInstanceState)
         {
             base.OnCreateDialog(savedInstanceState);
 
@@ -41,7 +41,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             var datePicker = v.FindViewById<DatePicker>(Resource.Id.dialog_date_datePicker);
             datePicker.Init(_date.Year, _date.Month-1, _date.Day, this);
 
-            return new AlertDialog.Builder(Activity)
+            return new Android.App.AlertDialog.Builder(Activity)
                 .SetView(v)
                 .SetTitle(Resource.String.date_picker_title)
                 .SetPositiveButton(Android.Resource.String.Ok, DialogClickHandler)
@@ -50,17 +50,10 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         private void DialogClickHandler(object sender, DialogClickEventArgs e)
         {
-            sendResult(Result.Ok);
+            sendResult(Android.App.Result.Ok);
         }
 
-
-        //public void OnDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth)
-        //{
-        //    _date = new DateTime(year, monthOfYear + 1, dayOfMonth);
-        //    Arguments.PutString(EXTRA_DATE, _date.ToString());
-        //}
-
-        private void sendResult(Result resultCode)
+        private void sendResult(Android.App.Result resultCode)
         {
             if (TargetFragment == null) return;
 

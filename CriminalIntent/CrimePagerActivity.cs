@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -14,8 +13,8 @@ using Android.Support.V4.App;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    [Activity(Label = "CrimePagerActivity"),
-     MetaData("android.support.PARENT_ACTIVITY",
+    [Android.App.Activity(Label = "CrimePagerActivity", Name = "@string/app_name"),
+     Android.App.MetaData("android.support.PARENT_ACTIVITY",
         Value = "dtc.nin.ukjenks.criminalintent.CrimeListActivity")]
     public class CrimePagerActivity : FragmentActivity
     {

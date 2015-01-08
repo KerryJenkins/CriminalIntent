@@ -4,7 +4,6 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -107,7 +106,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         public override void OnActivityResult(int requestCode, int resultCode, Intent data)
         {
             //base.OnActivityResult(requestCode, resultCode, data);
-            if (resultCode != (int)Result.Ok) return;
+            if (resultCode != (int)Android.App.Result.Ok) return;
 
             if (requestCode == REQUEST_DATE)
             {

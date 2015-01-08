@@ -69,6 +69,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crime.cs" />
+    <Compile Include="CrimeCameraActivity.cs" />
+    <Compile Include="CrimeCameraFragment.cs" />
     <Compile Include="CrimeFragment.cs" />
     <Compile Include="CrimeLab.cs" />
     <Compile Include="CrimeListActivity.cs" />
@@ -110,6 +112,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\background_activated.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\fragment_crime_camera.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

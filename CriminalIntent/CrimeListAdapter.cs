@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using Android.App;
+using Android.Support.V4.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -15,9 +15,9 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
     public class CrimeListAdapter : ArrayAdapter<Crime>
     {
         private List<Crime> _crimes;
-        private Activity _context;
+        private FragmentActivity _context;
 
-        public CrimeListAdapter(Activity context, List<Crime> crimes) : 
+        public CrimeListAdapter(FragmentActivity context, List<Crime> crimes) : 
             base(context, Android.Resource.Layout.SimpleListItem1, crimes)
         {
             _context = context;
