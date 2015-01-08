@@ -178,7 +178,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 		{
 			
 			// aapt resource value: 0x7f050000
-			public const int app_name = 2131034112;
+			public const int ApplicationName = 2131034112;
 			
 			// aapt resource value: 0x7f05000c
 			public const int button_text = 2131034124;

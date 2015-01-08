@@ -13,7 +13,8 @@ using Android.Support.V4.App;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    [Android.App.Activity(Label = "CrimePagerActivity", Name = "@string/app_name"),
+    [Android.App.Activity(Label = "@string/ApplicationName", 
+        Name = "dtc.nin.ukjenks.criminalintent.CrimePagerActivity"),
      Android.App.MetaData("android.support.PARENT_ACTIVITY",
         Value = "dtc.nin.ukjenks.criminalintent.CrimeListActivity")]
     public class CrimePagerActivity : FragmentActivity

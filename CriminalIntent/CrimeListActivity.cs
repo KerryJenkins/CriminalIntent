@@ -12,7 +12,9 @@ using Android.Widget;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    [Android.App.Activity(Label = "CrimeListActivity", MainLauncher = true, Icon = "@drawable/Icon")]
+    [Android.App.Activity(Label = "@string/ApplicationName", 
+        MainLauncher = true, 
+        Icon = "@drawable/Icon")]
     public class CrimeListActivity : SingleFragmentActivity
     {
 

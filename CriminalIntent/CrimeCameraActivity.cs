@@ -12,7 +12,9 @@ using Android.Widget;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
-    [Android.App.Activity(Label = "@string/app_name", Name = "dtc.nin.ukjenks.criminalintent.CrimeCameraActivity", ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
+    [Android.App.Activity(Label = "@string/ApplicationName", 
+        Name = "dtc.nin.ukjenks.criminalintent.CrimeCameraActivity", 
+        ScreenOrientation = Android.Content.PM.ScreenOrientation.Landscape)]
     public class CrimeCameraActivity : SingleFragmentActivity
     {
         protected override Fragment CreateFragment()
