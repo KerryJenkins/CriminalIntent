@@ -79,6 +79,7 @@
     <Compile Include="CrimePagerActivity.cs" />
     <Compile Include="CriminalIntentJSONSerializer.cs" />
     <Compile Include="DatePickerFragment.cs" />
+    <Compile Include="Photo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleFragmentActivity.cs" />

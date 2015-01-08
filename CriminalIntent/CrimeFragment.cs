@@ -143,7 +143,9 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
                 string fileName = data.GetStringExtra(CrimeCameraFragment.EXTRA_PHOTO_FILENAME);
                 if (fileName != null)
                 {
-                    Log.Info(TAG, "filename: " + fileName);
+                    var p = new Photo(fileName);
+                    _crime.Picture = p;
+                    Log.Info(TAG, "Crime: " + _crime.Title + " has a photo");
                 }
             }
         }
