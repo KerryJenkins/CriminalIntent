@@ -19,6 +19,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         private EditText _titleField;
         private Button _dateButton;
         private CheckBox _solvedCheckBox;
+        private ImageButton _photoButton;
 
         public const string EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crime_id";
         public const string DIALOG_DATE = "date";
@@ -67,6 +68,8 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             _solvedCheckBox = v.FindViewById<CheckBox>(Resource.Id.crime_solved);
             _solvedCheckBox.Checked = _crime.Solved;
             _solvedCheckBox.CheckedChange += SolvedCheckBoxCheckedChange;
+
+            //_photoButton = v.FindViewById<ImageButton>
 
             return v;        
         }

@@ -69,8 +69,11 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			// aapt resource value: 0x7f040008
 			public const int crime_camera_takePictureButton = 2130968584;
 			
-			// aapt resource value: 0x7f040004
-			public const int crime_date = 2130968580;
+			// aapt resource value: 0x7f040005
+			public const int crime_date = 2130968581;
+			
+			// aapt resource value: 0x7f040003
+			public const int crime_imageButton = 2130968579;
 			
 			// aapt resource value: 0x7f04000d
 			public const int crime_list_item_dateTextView = 2130968589;
@@ -81,11 +84,11 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			// aapt resource value: 0x7f04000c
 			public const int crime_list_item_titleTextView = 2130968588;
 			
-			// aapt resource value: 0x7f040005
-			public const int crime_solved = 2130968581;
+			// aapt resource value: 0x7f040006
+			public const int crime_solved = 2130968582;
 			
-			// aapt resource value: 0x7f040003
-			public const int crime_title = 2130968579;
+			// aapt resource value: 0x7f040004
+			public const int crime_title = 2130968580;
 			
 			// aapt resource value: 0x7f040002
 			public const int dialog_date_datePicker = 2130968578;
@@ -98,9 +101,6 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 			
 			// aapt resource value: 0x7f04000a
 			public const int initial_crimeButton = 2130968586;
-			
-			// aapt resource value: 0x7f040006
-			public const int linearLayout1 = 2130968582;
 			
 			// aapt resource value: 0x7f04000e
 			public const int menu_item_delete_crime = 2130968590;
