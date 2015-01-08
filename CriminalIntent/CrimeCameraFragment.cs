@@ -17,6 +17,8 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
     {
         private const string TAG = "CrimeCameraFragment";
 
+        public const string EXTRA_PHOTO_FILENAME = "com.arcbtech.android.criminalintent.photo_filename";
+
         private Camera _camera;
         private SurfaceView _surfaceView;
         private View _progressContainer;
@@ -159,15 +161,33 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         public void OnPictureTaken(byte[] data, Camera camera)
         {
-            var filename = new Guid().ToString() + ".jpg";
-            var documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-            var fullFilename = System.IO.Path.Combine(documentsPath, filename);
+            string fullFilename = null;
+            var success = false;
+            try
+            {
+                var filename = Guid.NewGuid().ToString() + ".jpg";
+                var documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+                fullFilename = System.IO.Path.Combine(documentsPath, filename);
 
-            System.IO.File.WriteAllBytes(fullFilename, data);
+                System.IO.File.WriteAllBytes(fullFilename, data);
+                success = true;
+            }
+            finally
+            {
+                if (success)
+                {
+                    var i = new Intent();
+                    i.PutExtra(EXTRA_PHOTO_FILENAME, fullFilename);
+                    Activity.SetResult(Android.App.Result.Ok, i);
+                }
+                else
+                {
+                    Activity.SetResult(Android.App.Result.Canceled);
+                }
 
-            Log.Info(TAG, "JPEG saved at " + filename);
+                Activity.Finish();
+            }
 
-            Activity.Finish();
         }
     }
 }

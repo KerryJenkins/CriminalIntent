@@ -16,6 +16,8 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 {
     public class CrimeFragment : Android.Support.V4.App.Fragment
     {
+        private const string TAG = "CrimeFragment";
+
         private Crime _crime;
         private EditText _titleField;
         private Button _dateButton;
@@ -25,6 +27,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         public const string EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crime_id";
         public const string DIALOG_DATE = "date";
         public const int REQUEST_DATE = 0;
+        public const int REQUEST_PHOTO = 1;
 
         public static CrimeFragment NewInstance(Guid crimeId)
         {
@@ -89,7 +92,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         void _photoButton_Click(object sender, EventArgs e)
         {
             var i = new Intent(Activity, typeof(CrimeCameraActivity));
-            StartActivity(i);
+            StartActivityForResult(i, REQUEST_PHOTO);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -134,6 +137,14 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
                 var date = DateTime.Parse(data.GetStringExtra(DatePickerFragment.EXTRA_DATE));
                 _crime.Date = date;
                 UpdateDate();
+            }
+            else if (requestCode == REQUEST_PHOTO)
+            {
+                string fileName = data.GetStringExtra(CrimeCameraFragment.EXTRA_PHOTO_FILENAME);
+                if (fileName != null)
+                {
+                    Log.Info(TAG, "filename: " + fileName);
+                }
             }
         }
 
