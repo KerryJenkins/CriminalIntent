@@ -21,5 +21,13 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         {
             return new CrimeCameraFragment();
         }
+
+        protected override void OnCreate(Bundle bundle)
+        {
+            RequestWindowFeature(WindowFeatures.NoTitle);
+            Window.AddFlags(WindowManagerFlags.Fullscreen);
+
+            base.OnCreate(bundle);
+        }
     }
 }

@@ -10,6 +10,7 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Android.Hardware;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
@@ -69,9 +70,26 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             _solvedCheckBox.Checked = _crime.Solved;
             _solvedCheckBox.CheckedChange += SolvedCheckBoxCheckedChange;
 
-            //_photoButton = v.FindViewById<ImageButton>
+            _photoButton = v.FindViewById<ImageButton>(Resource.Id.crime_imageButton);
+            _photoButton.Click += _photoButton_Click;
+
+            var pm = Activity.PackageManager;
+            var hasACamera = pm.HasSystemFeature(Android.Content.PM.PackageManager.FeatureCamera) ||
+                            pm.HasSystemFeature(Android.Content.PM.PackageManager.FeatureCameraFront) ||
+                            (Build.VERSION.SdkInt >= BuildVersionCodes.Gingerbread &&
+                             Camera.NumberOfCameras > 0);
+            if (!hasACamera)
+            {
+                _photoButton.Enabled = false;
+            }
 
             return v;        
+        }
+
+        void _photoButton_Click(object sender, EventArgs e)
+        {
+            var i = new Intent(Activity, typeof(CrimeCameraActivity));
+            StartActivity(i);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)

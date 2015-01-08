@@ -19,10 +19,15 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         private Camera _camera;
         private SurfaceView _surfaceView;
+        private View _progressContainer;
+        
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var v = inflater.Inflate(Resource.Layout.fragment_crime_camera, container, false);
+
+            _progressContainer = v.FindViewById(Resource.Id.crime_camera_progressContainer);
+            _progressContainer.Visibility = ViewStates.Invisible;
 
             var takePictureButton = v.FindViewById<Button>(Resource.Id.crime_camera_takePictureButton);
 
@@ -31,7 +36,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             _surfaceView = v.FindViewById<SurfaceView>(Resource.Id.crime_camera_surfaceView);
 
             var holder = _surfaceView.Holder;
-            //holder.SetType(SurfaceType.PushBuffers);
+            holder.SetType(SurfaceType.PushBuffers);
 
             holder.AddCallback(this as ISurfaceHolderCallback);
 
@@ -65,7 +70,10 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         void takePictureButton_Click(object sender, EventArgs e)
         {
-            Activity.Finish();
+            if (_camera != null)
+            {
+                _camera.TakePicture(this as Camera.IShutterCallback, null, this as Camera.IPictureCallback);
+            }
         }
      }
 
@@ -74,11 +82,13 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
         public void SurfaceChanged(ISurfaceHolder holder, Android.Graphics.Format format, int width, int height)
         {
-            if (_camera != null) return;
+            if (_camera == null) return;
 
             var parameters = _camera.GetParameters();
             Android.Hardware.Camera.Size s = GetBestSupportedSize(parameters.SupportedPreviewSizes, width, height);
             parameters.SetPreviewSize(s.Width, s.Height);
+            s = GetBestSupportedSize(parameters.SupportedPictureSizes, width, height);
+            parameters.SetPictureSize(s.Width, s.Height);
             _camera.SetParameters(parameters);
 
             try
@@ -132,6 +142,32 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             }
 
             return bestSize;
+        }
+    }
+
+    public partial class CrimeCameraFragment : Camera.IShutterCallback
+    {
+
+        public void OnShutter()
+        {
+            _progressContainer.Visibility = ViewStates.Visible;
+        }
+    }
+
+    public partial class CrimeCameraFragment : Camera.IPictureCallback
+    {
+
+        public void OnPictureTaken(byte[] data, Camera camera)
+        {
+            var filename = new Guid().ToString() + ".jpg";
+            var documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+            var fullFilename = System.IO.Path.Combine(documentsPath, filename);
+
+            System.IO.File.WriteAllBytes(fullFilename, data);
+
+            Log.Info(TAG, "JPEG saved at " + filename);
+
+            Activity.Finish();
         }
     }
 }
