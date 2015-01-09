@@ -198,6 +198,38 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             _dateButton.Text = _crime.Date.ToString(CultureInfo.InvariantCulture);
         }
 
+        private string GetCrimeReport() {
+            string solvedString = null;
+            if (_crime.Solved) {
+                solvedString = GetString(Resource.String.crime_report_solved);
+            }
+            else
+            {
+                solvedString = GetString(Resource.String.crime_report_unsolved);
+            }
+
+            var dateFormat = "ddd, MMM dd";
+            var dateString = _crime.Date.ToString(dateFormat);
+
+            var suspect = _crime.Suspect;
+            if (suspect == null)
+            {
+                suspect = GetString(Resource.String.crime_report_no_suspect);
+            }
+            else
+            {
+                suspect = String.Format(GetString(Resource.String.crime_report_suspect, suspect));
+            }
+
+            var report = String.Format(GetString(Resource.String.crime_report),
+                    _crime.Title,
+                    dateString,
+                    solvedString,
+                    suspect);
+
+            return report;
+        }
+
 
     }
 }
