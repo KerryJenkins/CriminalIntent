@@ -11,18 +11,21 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Android.Hardware;
+using Android.Graphics.Drawables;
 
 namespace DTC.NIN.Ukjenks.CriminalIntent
 {
     public class CrimeFragment : Android.Support.V4.App.Fragment
     {
         private const string TAG = "CrimeFragment";
+        private const string DIALOG_IMAGE = "image";
 
         private Crime _crime;
         private EditText _titleField;
         private Button _dateButton;
         private CheckBox _solvedCheckBox;
         private ImageButton _photoButton;
+        private ImageView _photoView;
 
         public const string EXTRA_CRIME_ID = "com.bignerdranch.android.criminalintent.crime_id";
         public const string DIALOG_DATE = "date";
@@ -38,6 +41,18 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             fragment.Arguments = args;
 
             return fragment;
+        }
+
+        public override void OnStart()
+        {
+            base.OnStart();
+            ShowPhoto();
+        }
+
+        public override void OnStop()
+        {
+            base.OnStop();
+            PictureUtils.CleanImageView(_photoView);
         }
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -76,6 +91,8 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             _photoButton = v.FindViewById<ImageButton>(Resource.Id.crime_imageButton);
             _photoButton.Click += _photoButton_Click;
 
+            _photoView = v.FindViewById<ImageView>(Resource.Id.crime_imageView);
+            _photoView.Click += _photoView_Click;
             var pm = Activity.PackageManager;
             var hasACamera = pm.HasSystemFeature(Android.Content.PM.PackageManager.FeatureCamera) ||
                             pm.HasSystemFeature(Android.Content.PM.PackageManager.FeatureCameraFront) ||
@@ -89,10 +106,30 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
             return v;        
         }
 
+        void _photoView_Click(object sender, EventArgs e)
+        {
+            var p = _crime.Picture;
+            if (p == null) return;
+
+            var fm = Activity.SupportFragmentManager;
+            ImageFragment.NewInstance(p.Filename).Show(fm, DIALOG_IMAGE);
+        }
+
         void _photoButton_Click(object sender, EventArgs e)
         {
             var i = new Intent(Activity, typeof(CrimeCameraActivity));
             StartActivityForResult(i, REQUEST_PHOTO);
+        }
+
+        void ShowPhoto()
+        {
+            Photo p = _crime.Picture;
+            BitmapDrawable b = null;
+            if (p != null)
+            {
+                b = PictureUtils.GetScaledDrawable(Activity, p.Filename);
+            }
+            _photoView.SetImageDrawable(b);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -145,7 +182,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
                 {
                     var p = new Photo(fileName);
                     _crime.Picture = p;
-                    Log.Info(TAG, "Crime: " + _crime.Title + " has a photo");
+                    ShowPhoto();
                 }
             }
         }
