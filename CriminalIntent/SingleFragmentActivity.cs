@@ -17,11 +17,16 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
     {
         protected abstract Android.Support.V4.App.Fragment CreateFragment();
 
+        protected virtual int GetLayoutResId()
+        {
+            return Resource.Layout.activity_fragment;
+        }
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.activity_fragment);
+            SetContentView(GetLayoutResId());
 
             var fm = SupportFragmentManager;
             var fragment = fm.FindFragmentById(Resource.Id.fragmentContainer);

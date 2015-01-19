@@ -17,7 +17,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         Name = "dtc.nin.ukjenks.criminalintent.CrimePagerActivity"),
      Android.App.MetaData("android.support.PARENT_ACTIVITY",
         Value = "dtc.nin.ukjenks.criminalintent.CrimeListActivity")]
-    public class CrimePagerActivity : FragmentActivity
+    public class CrimePagerActivity : FragmentActivity, CrimeFragment.Callbacks
     {
         private ViewPager _viewPager;
         private List<Crime> _crimes;
@@ -90,6 +90,11 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
 
             }
             #endregion
+        }
+
+        public void OnCrimeUpdated(Crime crime)
+        {
+            // no implementation needed for CrimePagerActivity
         }
     }
 

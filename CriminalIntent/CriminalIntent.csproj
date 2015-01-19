@@ -120,6 +120,9 @@
     <AndroidResource Include="Resources\layout\fragment_crime_camera.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_twopane.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_fragment.axml" />
@@ -133,6 +136,12 @@
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
     <AndroidResource Include="Resources\values\ids.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\values\refs.xml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\values-sw600dp\refs.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

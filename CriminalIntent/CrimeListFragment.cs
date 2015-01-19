@@ -19,6 +19,24 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         private Boolean _subtitileVisible;
         private List<Crime> _crimes;
         private Button _addCrimeButton;
+        private Callbacks _callbacks;
+
+        public interface Callbacks
+        {
+            void onCrimeSelected(Crime crime);
+        }
+
+        public override void OnAttach(Android.App.Activity activity)
+        {
+            base.OnAttach(activity);
+            _callbacks = (Callbacks)Activity;
+        }
+
+        public override void OnDetach()
+        {
+            base.OnDetach();
+            _callbacks = null;
+        }
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -71,9 +89,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         {
             var crime = new Crime();
             CrimeLab.Create(Activity).AddCrime(crime);
-            var i = new Intent(Activity, typeof(CrimePagerActivity));
-            i.PutExtra(CrimeFragment.EXTRA_CRIME_ID, crime.Id.ToString());
-            StartActivityForResult(i, 0);
+            _callbacks.onCrimeSelected(crime);
         }
 
         public override void OnResume()
@@ -126,9 +142,7 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
                 case Resource.Id.menu_item_new_crime:
                     var crime = new Crime();
                     CrimeLab.Create(Activity).AddCrime(crime);
-                    var intent = new Intent(Activity, typeof(CrimePagerActivity));
-                    intent.PutExtra(CrimeFragment.EXTRA_CRIME_ID, crime.Id.ToString());
-                    StartActivityForResult(intent, 0);
+                    _callbacks.onCrimeSelected(crime);
                     return true;
                 
                 case Resource.Id.menu_item_show_subtitle:
@@ -155,11 +169,12 @@ namespace DTC.NIN.Ukjenks.CriminalIntent
         public override void OnListItemClick(ListView l, View v, int position, long id)
         {
             Crime crime = _crimes[position];
-            //Log.Debug(TAG, crime.Title + " was clicked");
+            _callbacks.onCrimeSelected(crime);
+        }
 
-            var i = new Intent(Activity, typeof(CrimePagerActivity));
-            i.PutExtra(CrimeFragment.EXTRA_CRIME_ID, crime.Id.ToString());
-            StartActivity(i);
+        public void UpdateUI()
+        {
+            ((CrimeListAdapter)ListAdapter).NotifyDataSetChanged();
         }
 
      }
